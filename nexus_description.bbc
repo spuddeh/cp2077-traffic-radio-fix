@@ -64,6 +64,7 @@ If you add a vehicle to the game or to traffic, check these so it does not have 
 Mods found spawning or adding a vehicle with a player sound set in traffic, and whether this mod fixes it. If you know of another, tell me in the comments and I will check it and add it here.
 [list]
 [*][url=https://www.nexusmods.com/cyberpunk2077/mods/25552]Night City Traffic Overhaul[/url]: spawns the Mizutani Shion Sport and TDR, and the Thorton Mackinaw BMF, in traffic. [b]Fixed by this mod.[/b] Its example vehicle in [font=Courier New]YourCustomVehicles.yaml[/font] ([font=Courier New]custom__maelstrom_thorton_mackinaw_bmf[/font]) is built on the BMF and inherits the same problem if you add it to your traffic: also [b]fixed by this mod.[/b][/*]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/14025]Nova Traffic[/url]: the Simple and Category versions put the Mizutani Shion Sport and the Thorton Mackinaw BMF into traffic, and the Customizable version can use any of the affected vehicles. Nova copies a vehicle's settings, its traffic sound set included, onto the traffic car it replaces while the game runs, after this mod has already fixed them. [b]Fixed by this mod.[/b][/*]
 [/list]
 [line]
 [color=#ffff00][size=5][b]How this was found[/b][/size][/color]
