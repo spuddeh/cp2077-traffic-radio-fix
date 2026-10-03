@@ -60,12 +60,13 @@ If you add a vehicle to the game or to traffic, check these so it does not have 
 [*][b]Quick check:[/b] run your mod with this one and RedLogger. If your vehicle is listed in the [font=Courier New]TrafficRadioFix[/font] log, it had the problem and this mod fixed it. Setting [font=Courier New]traffic_audio_resource[/font] in your own mod fixes it for players who do not use this one.[/*]
 [/list]
 [line]
-[color=#ffff00][size=5][b]Mods known to have this issue[/b][/size][/color]
-Mods found spawning or adding a vehicle with a player sound set in traffic, and whether this mod fixes it. If you know of another, tell me in the comments and I will check it and add it here.
+[color=#ffff00][size=5][b]Mods checked[/b][/size][/color]
+Traffic and vehicle mods checked for this problem, and whether this mod fixes it. If you know of another, tell me in the comments and I will check it and add it here.
 [list]
 [*][url=https://www.nexusmods.com/cyberpunk2077/mods/25552]Night City Traffic Overhaul[/url]: spawns the Mizutani Shion Sport and TDR, and the Thorton Mackinaw BMF, in traffic. [b]Fixed by this mod.[/b] Its example vehicle in [font=Courier New]YourCustomVehicles.yaml[/font] ([font=Courier New]custom__maelstrom_thorton_mackinaw_bmf[/font]) is built on the BMF and inherits the same problem if you add it to your traffic: also [b]fixed by this mod.[/b][/*]
 [*][url=https://www.nexusmods.com/cyberpunk2077/mods/14025]Nova Traffic[/url]: the Simple and Category versions put the Mizutani Shion Sport and the Thorton Mackinaw BMF into traffic, and the Customizable version can use any of the affected vehicles. Nova copies a vehicle's settings, its traffic sound set included, onto the traffic car it replaces while the game runs, after this mod has already fixed them. [b]Fixed by this mod.[/b][/*]
 [*][url=https://www.nexusmods.com/cyberpunk2077/mods/24470]Mod My Traffic[/url]: removes traffic cars and spawns full AI-driven vehicles in their place, chosen from purchasable (player) vehicle records. Those are not traffic cars, so they never use a traffic sound set, and this mod cannot change the sound set they use. Whether they play a radio, and with which radio sound, has not been tested. [b]Not covered by this mod.[/b][/*]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/19224]Mizutani Shion Overhaul[/url] (with its MZ1 Streetracer and MZ2 Quadra Hunter options): changes the Shion's handling, the sound set of the Shion you drive, and the paint of some Shions in traffic. It does not change the traffic sound set, so the traffic Shion Sport and TDR still have the problem with it installed. [b]Fixed by this mod.[/b][/*]
 [/list]
 [line]
 [color=#ffff00][size=5][b]How this was found[/b][/size][/color]
