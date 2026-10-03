@@ -19,13 +19,28 @@
 
 module TrafficRadioFix
 
+@if(ModuleExists("RedLogger"))
+import RedLogger.*
+
+// RedLogger is optional: with it, each run writes r6\logs\mods\TrafficRadioFix__<date>.log; without it, nothing.
+@if(ModuleExists("RedLogger"))
+func TrafficRadioFixLog(line: String) -> Void {
+    RedLog.Append("TrafficRadioFix", line);
+}
+
+@if(!ModuleExists("RedLogger"))
+func TrafficRadioFixLog(line: String) -> Void {}
+
 public class TrafficRadioFixTweak extends ScriptableTweak {
     protected cb func OnApply() -> Void {
         let table = TrafficRadioFixTweak.Table();
         let size = ArraySize(table);
+        let scanned = 0;
+        let swapped = 0;
         for record in TweakDBInterface.GetRecords(n"Vehicle") {
             let vehicle = record as Vehicle_Record;
             if IsDefined(vehicle) {
+                scanned += 1;
                 let current = vehicle.Traffic_audio_resource();
                 let i = 0;
                 while i < size {
@@ -34,6 +49,8 @@ public class TrafficRadioFixTweak extends ScriptableTweak {
                         TDBID.Append(flat, t".traffic_audio_resource");
                         TweakDBManager.SetFlat(flat, ToVariant(table[i + 1]));
                         TweakDBManager.UpdateRecord(vehicle.GetID());
+                        swapped += 1;
+                        TrafficRadioFixLog(TDBID.ToStringDEBUG(vehicle.GetID()) + ": " + current + " -> " + table[i + 1]);
                         i = size;
                     } else {
                         i += 2;
@@ -41,6 +58,24 @@ public class TrafficRadioFixTweak extends ScriptableTweak {
                 }
             }
         }
+        TrafficRadioFixLog("checked " + IntToString(scanned) + " vehicle records against " + IntToString(size / 2)
+            + " player-radio sound sets, swapped " + IntToString(swapped));
+        // The static patch's records, as the script found them: on their traffic set if the YAML applied.
+        for name in TrafficRadioFixTweak.StaticRecords() {
+            let vehicle = TweakDBInterface.GetVehicleRecord(TDBID.Create(name));
+            if IsDefined(vehicle) {
+                TrafficRadioFixLog(name + ": " + vehicle.Traffic_audio_resource());
+            }
+        }
+    }
+
+    // The records TrafficRadioFix.yaml sets, so a run shows whether the static patch applied.
+    private static func StaticRecords() -> array<String> {
+        return [
+            "Vehicle.v_sport2_mizutani_shion_sport",
+            "Vehicle.v_sport2_mizutani_shion_tdr",
+            "Vehicle.v_utility4_thorton_mackinaw_bmf"
+        ];
     }
 
     // Pairs: a sound set with a player radio, then the traffic set that replaces it.
