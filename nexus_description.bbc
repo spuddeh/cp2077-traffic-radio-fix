@@ -2,7 +2,7 @@
 [i]Passing traffic cars no longer play their radio as if it were inside your car.[/i][/center]
 [line]
 [color=#ffff00][size=5][b]Description[/b][/size][/color]
-You are driving or walking with your own radio off, and music suddenly starts playing as if your radio had switched itself on. A few seconds later it cuts out mid-song, with no fade. It happens at random, it is hard to make it happen on purpose, and it is not your mods: the cause is in the base game's own data.
+You are driving around with your own radio off, and music suddenly starts playing as if your radio had switched itself on. A few seconds later it cuts out mid-song, with no fade. It happens at random, it is hard to make it happen on purpose, and it is not your mods: the cause is in the base game's own data.
 
 What you are hearing is a passing traffic car's radio, played through the sound made for the radio in [b]your[/b] car.
 
