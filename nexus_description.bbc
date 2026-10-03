@@ -1,0 +1,90 @@
+[center][color=#ffff00][size=6][b]Traffic Radio Fix[/b][/size][/color]
+[i]Passing traffic cars no longer play their radio as if it were inside your car.[/i][/center]
+[line]
+[color=#ffff00][size=5][b]Description[/b][/size][/color]
+You are driving or walking with your own radio off, and music suddenly starts playing as if your radio had switched itself on. A few seconds later it cuts out mid-song, with no fade. It happens at random, it is hard to make it happen on purpose, and it is not your mods: the cause is in the base game's own data.
+
+What you are hearing is a passing traffic car's radio, played through the sound made for the radio in [b]your[/b] car.
+
+[color=#ffff00][size=4][b]Why it happens[/b][/size][/color]
+Every car in the game has two sound sets: one used when you are driving it, and one used when it is driving around as traffic. Each set chooses which radio sound the car uses:
+[list]
+[*]The [b]player[/b] radio sound is made for the inside of the car you are driving. It does not get quieter with distance.[/*]
+[*]The [b]traffic[/b] radio sound is a sound out in the world. It is quiet, and fades as the car drives away.[/*]
+[/list]
+A few vehicle records in the game point their traffic sound set at the [b]player[/b] one by mistake. In the base game these are the Mizutani Shion [b]Sport[/b] and [b]TDR[/b], which are common in traffic, and the Thorton Mackinaw [b]BMF[/b], which only appears in traffic when a traffic mod spawns it. When one of those cars passes you with its radio on, you hear its radio as if it were yours, at full volume from a long way off. When its station stops (the car drives out of range, or whatever else nearby was playing the same station stops), the music cuts dead.
+
+This mod points every traffic car that uses a player sound set at that model's traffic sound set instead. Those cars then sound like every other car in traffic: radio, engine and horn.
+
+[color=#ffff00][size=4][b]What it covers[/b][/size][/color]
+[list]
+[*]Every base game vehicle with this mistake. Phantom Liberty's vehicles were checked too and have none.[/*]
+[*]Traffic mods that spawn those vehicles, such as [url=https://www.nexusmods.com/cyberpunk2077/mods/25552]Night City Traffic Overhaul[/url].[/*]
+[*]Modded vehicles built on one of the affected vehicles, or set to use a player sound set in traffic.[/*]
+[/list]
+It checks every vehicle once, when the game starts, after every other mod's TweakXL tweaks have loaded, so it does not need a list of mods. Nothing runs while you play.
+
+Your own cars are not changed: the sound set used when you drive a car is left alone. A car you hijack from traffic gets the player sound set when you take it over, as it always has.
+
+[color=#ffff00][size=4][b]Mizutani Shion horn fix[/b][/size][/color]
+[url=https://www.nexusmods.com/cyberpunk2077/mods/21518]Mizutani Shion horn fix[/url] fixes the Shion's horn by pointing the Shion Sport and TDR at the Shion's traffic sound set. That also fixes this radio problem for those two cars, as a side effect. This mod does the same for every vehicle with the same mistake, vanilla or modded. You can run both: they set the same value.
+
+[color=#ffff00][size=4][b]Radioport Dropout Fix is a separate issue[/b][/size][/color]
+[url=https://www.nexusmods.com/cyberpunk2077/mods/33838]Radioport Dropout Fix[/url] fixes your Radioport going silent when a car or another radio is tuned to your station. That is a different problem with a different cause. The two mods change different things and neither affects what the other does: use either, both, or neither.
+[line]
+[color=#ffff00][size=5][b]Requirements[/b][/size][/color]
+[list]
+[*]Cyberpunk 2077 2.31[/*]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/4197]TweakXL[/url][/*]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/1511]redscript[/url][/*]
+[/list]
+Optional: [url=https://www.nexusmods.com/cyberpunk2077/mods/31920]RedLogger[/url], for a log of what the mod changed.
+[line]
+[color=#ffff00][size=5][b]Installation[/b][/size][/color]
+Install with your mod manager, or extract the archive into your Cyberpunk 2077 folder so you end up with:
+[code]Cyberpunk 2077\r6\scripts\TrafficRadioFix\TrafficRadioFix.reds
+Cyberpunk 2077\r6\tweaks\TrafficRadioFix\TrafficRadioFix.yaml[/code]
+
+To confirm it is working with RedLogger installed, open [font=Courier New]r6\logs\mods\[/font] after launching the game. The newest [font=Courier New]TrafficRadioFix[/font] log ends with a line starting [font=Courier New]checked[/font], followed by the Shion Sport, Shion TDR and BMF records with their traffic sound sets. In an unmodded game it reports [font=Courier New]swapped 0[/font]: the mod's own tweak file has already fixed the base game records by then. Any number above 0 is a modded vehicle the mod has fixed, listed by name above that line.
+
+[color=#ffff00][size=4][b]Uninstall[/b][/size][/color]
+Delete those two files. No save cleanup is needed.
+[line]
+[color=#ffff00][size=5][b]For mod authors[/b][/size][/color]
+If you add a vehicle to the game or to traffic, check these so it does not have the same problem:
+[list]
+[*][b]Check [font=Courier New]traffic_audio_resource[/font] on your vehicle record.[/b] It should name a traffic sound set, one ending in [font=Courier New]_traffic[/font] (for example [font=Courier New]v_car_mizutani_shion_traffic[/font]). If it names the same set as [font=Courier New]player_audio_resource[/font] (for example [font=Courier New]v_car_mizutani_shion[/font]), your car plays its player radio in traffic.[/*]
+[*][b]Check what you inherit.[/b] A record made with [font=Courier New]$base[/font] copies its traffic sound set from the record it is based on. Basing a car on [font=Courier New]Vehicle.v_sport2_mizutani_shion_sport[/font], [font=Courier New]_tdr[/font], [font=Courier New]_player[/font] or [font=Courier New]_quest[/font], or on [font=Courier New]Vehicle.v_utility4_thorton_mackinaw_bmf[/font], inherits the mistake unless you set [font=Courier New]traffic_audio_resource[/font] yourself.[/*]
+[*][b]If you ship your own vehicle sound set[/b] (an [font=Courier New]audioVehicleMetadata[/font] entry), set its [font=Courier New]radioReceiverType[/font] to a traffic radio sound ([font=Courier New]radio_car_*_npc[/font], for example [font=Courier New]radio_car_sports_npc[/font]) for the set your car uses in traffic. A [font=Courier New]radio_car_*_player[/font] receiver plays as if it were inside the player's car. [b]This mod does not catch a sound set you ship yourself:[/b] it only knows the game's own.[/*]
+[*][b]Traffic spawners:[/b] any vehicle you spawn in traffic needs the checks above. The base game's Thorton Larimore traffic set ([font=Courier New]v_car_thorton_larimore_traffic[/font]) has the player radio in the game's own data, so anything that uses it in traffic has the problem.[/*]
+[*][b]Quick check:[/b] run your mod with this one and RedLogger. If your vehicle is listed in the [font=Courier New]TrafficRadioFix[/font] log, it had the problem and this mod fixed it. Setting [font=Courier New]traffic_audio_resource[/font] in your own mod fixes it for players who do not use this one.[/*]
+[/list]
+[line]
+[color=#ffff00][size=5][b]Mods known to have this issue[/b][/size][/color]
+Mods found spawning or adding a vehicle with a player sound set in traffic, and whether this mod fixes it. If you know of another, tell me in the comments and I will check it and add it here.
+[list]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/25552]Night City Traffic Overhaul[/url]: spawns the Mizutani Shion Sport and TDR, and the Thorton Mackinaw BMF, in traffic. [b]Fixed by this mod.[/b] Its example vehicle in [font=Courier New]YourCustomVehicles.yaml[/font] ([font=Courier New]custom__maelstrom_thorton_mackinaw_bmf[/font]) is built on the BMF and inherits the same problem if you add it to your traffic: also [b]fixed by this mod.[/b][/*]
+[/list]
+[line]
+[color=#ffff00][size=5][b]How this was found[/b][/size][/color]
+This started with comments on Radioport Dropout Fix: players hearing other cars' radios cut in and out with their own radio off. It looked like it might be that mod. It was not, and finding what it actually was took two days.
+
+Along the way I built a probe plugin to log every radio in the game as it started and stopped, logged the game's limited playing-station slots every second, drew markers over every radio in the game world, added a key to drop a marker in the log the moment a pop was heard, and swept 7,159 map sectors to find all 1,008 hidden "ambient radio" spots in the city (music from shops and street corners that switches on as you walk past). Ambient radios, world radios, the station slot limit and the game's no-fade station cut-off were all real, all suspects, and all innocent: they are sounds out in the world, and fade as you walk away.
+
+The answer came from matching each pop heard on screen recordings to the log. Seven of the eight pops lined up with a passing Mizutani Shion, from 17 to 112 metres away, playing its radio through the player car's radio sound. The Shion horn fix's two lines showed which setting was wrong. With them in place, the pops stopped.
+[line]
+[color=#ffff00][size=5][b]Compatibility[/b][/size][/color]
+[list]
+[*]Mizutani Shion horn fix: compatible, both set the same value.[/*]
+[*]Night City Traffic Overhaul and other traffic mods: compatible. The vehicles they spawn are fixed.[/*]
+[*]A mod that sets a vehicle's traffic sound set to a player one is overridden for that vehicle, since this runs after it.[/*]
+[/list]
+[line]
+[color=#ffff00][size=5][b]Credits[/b][/size][/color]
+[list]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/4197]TweakXL[/url] by psiberx.[/*]
+[*][url=https://www.nexusmods.com/cyberpunk2077/mods/1511]redscript[/url] by jac3km4.[/*]
+[/list]
+[line]
+[color=#ffff00][size=5][b]Disclaimer[/b][/size][/color]
+This mod was developed with the assistance of an LLM. All in-game testing and code validation was performed by a human. No rogue AIs were permitted through the Blackwall.
