@@ -26,7 +26,7 @@ radio on is heard at full volume as if it were the player's radio, and cuts off 
 
 ## Install
 
-Download from Nexus Mods (link on release). Requires [TweakXL](https://www.nexusmods.com/cyberpunk2077/mods/4197)
+Download from [Nexus Mods](https://www.nexusmods.com/cyberpunk2077/mods/34659). Requires [TweakXL](https://www.nexusmods.com/cyberpunk2077/mods/4197)
 and [redscript](https://www.nexusmods.com/cyberpunk2077/mods/1511); [RedLogger](https://www.nexusmods.com/cyberpunk2077/mods/31920)
 is optional.
 

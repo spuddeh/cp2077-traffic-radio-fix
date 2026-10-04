@@ -15,7 +15,7 @@ A Nexus **file id does not exist until a file has been uploaded once**, so the f
 from CI.
 
 1. **Create the Nexus mod page.** Requirements: TweakXL and redscript; RedLogger as optional. Paste
-   `nexus_description.bbc` as the description. Put the page number in `release-manifest.json` as
+   `nexus_description.bbc` as the description. The page is 34659, already in `release-manifest.json` as
    `nexus_mod_id`.
 2. **Build the first zip locally** and upload it by hand:
    ```pwsh
