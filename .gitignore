@@ -5,3 +5,8 @@ CLAUDE.md
 .vscode/
 .history/
 *.log
+
+# Media and release zips
+images/
+GraphEditorStates/
+*.zip

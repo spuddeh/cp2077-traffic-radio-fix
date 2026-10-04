@@ -29,3 +29,11 @@ radio on is heard at full volume as if it were the player's radio, and cuts off 
 Download from Nexus Mods (link on release). Requires [TweakXL](https://www.nexusmods.com/cyberpunk2077/mods/4197)
 and [redscript](https://www.nexusmods.com/cyberpunk2077/mods/1511); [RedLogger](https://www.nexusmods.com/cyberpunk2077/mods/31920)
 is optional.
+
+## License
+
+Licensed under the [MIT License](LICENSE). Use, change and share this mod and its source, including in your own mods. Keep the licence notice with any copy.
+
+## Disclaimer
+
+This mod was developed with the assistance of an LLM. All in-game testing and code validation was performed by a human. No rogue AIs were permitted through the Blackwall.
