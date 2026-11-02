@@ -3,7 +3,8 @@
 ## [1.0.1] - 2026-11-02
 
 ### Added
-- Game 2.5's two new player-radio sound sets in the table: `v_car_chevalier_centurion_legatus` and
+- The two player-radio sound sets new in game 2.5 in the table (the cars are from 2.3; on 2.31 they had no sound sets of
+  their own): `v_car_chevalier_centurion_legatus` and
   `v_car_yaiba_semimaru` (92 sets, regenerated from the 2.5 audio metadata). Their vanilla records already use
   traffic sets; the pairs catch car mods built on them.
 
