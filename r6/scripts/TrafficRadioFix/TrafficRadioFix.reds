@@ -2,7 +2,7 @@
 // Mod Name: Traffic Radio Fix
 // Author: Spuddeh
 // Description: Gives every traffic car a traffic radio, so no passing car plays as if inside the player's own.
-// Mod Version: 1.0.0
+// Mod Version: 1.0.1
 // Credits: TweakXL by psiberx.
 // ======================================================================================
 //
@@ -60,22 +60,6 @@ public class TrafficRadioFixTweak extends ScriptableTweak {
         }
         TrafficRadioFixLog("checked " + IntToString(scanned) + " vehicle records against " + IntToString(size / 2)
             + " player-radio sound sets, swapped " + IntToString(swapped));
-        // The static patch's records, as the script found them: on their traffic set if the YAML applied.
-        for name in TrafficRadioFixTweak.StaticRecords() {
-            let vehicle = TweakDBInterface.GetVehicleRecord(TDBID.Create(name));
-            if IsDefined(vehicle) {
-                TrafficRadioFixLog(name + ": " + vehicle.Traffic_audio_resource());
-            }
-        }
-    }
-
-    // The records TrafficRadioFix.yaml sets, so a run shows whether the static patch applied.
-    private static func StaticRecords() -> array<String> {
-        return [
-            "Vehicle.v_sport2_mizutani_shion_sport",
-            "Vehicle.v_sport2_mizutani_shion_tdr",
-            "Vehicle.v_utility4_thorton_mackinaw_bmf"
-        ];
     }
 
     // Pairs: a sound set with a player radio, then the traffic set that replaces it.
@@ -91,6 +75,7 @@ public class TrafficRadioFixTweak extends ScriptableTweak {
         "v_car_archer_quartz_gt", "v_car_archer_quartz_traffic",
         "v_car_archer_quartz_nomad", "v_car_archer_quartz_nomad_traffic",
         "v_car_chevalier_centurion", "v_car_chevalier_centurion_traffic",
+        "v_car_chevalier_centurion_legatus", "v_car_chevalier_centurion_traffic",
         "v_car_chevalier_emperor", "v_car_chevalier_emperor_traffic",
         "v_car_chevalier_emperor_police", "v_car_chevalier_emperor_police_traffic",
         "v_car_chevalier_thrax", "v_car_chevalier_thrax_traffic",
@@ -170,7 +155,8 @@ public class TrafficRadioFixTweak extends ScriptableTweak {
         "v_car_villefort_cortes_police", "v_car_villefort_cortes_police_traffic",
         "v_car_villefort_cortes_poor", "v_car_villefort_cortes_traffic",
         "v_car_villefort_deleon", "v_car_villefort_deleon_traffic",
-        "v_car_villefort_deleon_poor", "v_car_villefort_deleon_traffic"
+        "v_car_villefort_deleon_poor", "v_car_villefort_deleon_traffic",
+        "v_car_yaiba_semimaru", "v_car_yaiba_semimaru_traffic"
         ];
     }
 }
