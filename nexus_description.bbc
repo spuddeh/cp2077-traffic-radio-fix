@@ -12,7 +12,7 @@ Every car in the game has two sound sets: one used when you are driving it, and 
 [*]The [b]player[/b] radio sound is made for the inside of the car you are driving. It does not get quieter with distance.[/*]
 [*]The [b]traffic[/b] radio sound is a sound out in the world. It is quiet, and fades as the car drives away.[/*]
 [/list]
-A few vehicle records in the game point their traffic sound set at the [b]player[/b] one by mistake. In the base game these are the Mizutani Shion [b]Sport[/b] and [b]TDR[/b], which are common in traffic, and the Thorton Mackinaw [b]BMF[/b], which only appears in traffic when a traffic mod spawns it. When one of those cars passes you with its radio on, you hear its radio as if it were yours, at full volume from a long way off. When its station stops (the car drives out of range, or whatever else nearby was playing the same station stops), the music cuts dead.
+A few vehicle records in the game point their traffic sound set at the [b]player[/b] one by mistake. On game 2.31 these are the Mizutani Shion [b]Sport[/b] and [b]TDR[/b], which are common in traffic, and the Thorton Mackinaw [b]BMF[/b], which only appears in traffic when a traffic mod spawns it. Game 2.5 fixes the Shions itself, and the Mackinaw BMF is the one left. When one of those cars passes you with its radio on, you hear its radio as if it were yours, at full volume from a long way off. When its station stops (the car drives out of range, or whatever else nearby was playing the same station stops), the music cuts dead.
 
 This mod points every traffic car that uses a player sound set at that model's traffic sound set instead. Those cars then sound like every other car in traffic: radio, engine and horn.
 
@@ -34,7 +34,7 @@ Your own cars are not changed: the sound set used when you drive a car is left a
 [line]
 [color=#ffff00][size=5][b]Requirements[/b][/size][/color]
 [list]
-[*]Cyberpunk 2077 2.31[/*]
+[*]Game version 2.5 or 2.31[/*]
 [*][url=https://www.nexusmods.com/cyberpunk2077/mods/4197]TweakXL[/url][/*]
 [*][url=https://www.nexusmods.com/cyberpunk2077/mods/1511]redscript[/url][/*]
 [/list]
@@ -42,19 +42,19 @@ Optional: [url=https://www.nexusmods.com/cyberpunk2077/mods/31920]RedLogger[/url
 [line]
 [color=#ffff00][size=5][b]Installation[/b][/size][/color]
 Install with your mod manager, or extract the archive into your Cyberpunk 2077 folder so you end up with:
-[code]Cyberpunk 2077\r6\scripts\TrafficRadioFix\TrafficRadioFix.reds
-Cyberpunk 2077\r6\tweaks\TrafficRadioFix\TrafficRadioFix.yaml[/code]
+[code]Cyberpunk 2077\r6\scripts\TrafficRadioFix\TrafficRadioFix.reds[/code]
+Updating a manual install from 1.0.0: delete [font=Courier New]r6\tweaks\TrafficRadioFix\[/font], which is no longer part of the mod.
 
-To confirm it is working with RedLogger installed, open [font=Courier New]r6\logs\mods\[/font] after launching the game. The newest [font=Courier New]TrafficRadioFix[/font] log ends with a line starting [font=Courier New]checked[/font], followed by the Shion Sport, Shion TDR and BMF records with their traffic sound sets. In an unmodded game it reports [font=Courier New]swapped 0[/font]: the mod's own tweak file has already fixed the base game records by then. Any number above 0 is a modded vehicle the mod has fixed, listed by name above that line.
+To confirm it is working with RedLogger installed, open [font=Courier New]r6\logs\mods\[/font] after launching the game. The newest [font=Courier New]TrafficRadioFix[/font] log lists every vehicle it fixed, then a line starting [font=Courier New]checked[/font]. In an unmodded game that line reports [font=Courier New]swapped 2[/font] on game 2.5 (the two Mackinaw BMF records) and [font=Courier New]swapped 8[/font] on game 2.31 (the Shions as well). Any number above that is a modded vehicle the mod has fixed.
 
 [color=#ffff00][size=4][b]Uninstall[/b][/size][/color]
-Delete those two files. No save cleanup is needed.
+Delete that file. No save cleanup is needed.
 [line]
 [color=#ffff00][size=5][b]For mod authors[/b][/size][/color]
 If you add a vehicle to the game or to traffic, check these so it does not have the same problem:
 [list]
 [*][b]Check [font=Courier New]traffic_audio_resource[/font] on your vehicle record.[/b] It should name a traffic sound set, one ending in [font=Courier New]_traffic[/font] (for example [font=Courier New]v_car_mizutani_shion_traffic[/font]). If it names the same set as [font=Courier New]player_audio_resource[/font] (for example [font=Courier New]v_car_mizutani_shion[/font]), your car plays its player radio in traffic.[/*]
-[*][b]Check what you inherit.[/b] A record made with [font=Courier New]$base[/font] copies its traffic sound set from the record it is based on. Basing a car on [font=Courier New]Vehicle.v_sport2_mizutani_shion_sport[/font], [font=Courier New]_tdr[/font], [font=Courier New]_player[/font] or [font=Courier New]_quest[/font], or on [font=Courier New]Vehicle.v_utility4_thorton_mackinaw_bmf[/font], inherits the mistake unless you set [font=Courier New]traffic_audio_resource[/font] yourself.[/*]
+[*][b]Check what you inherit.[/b] A record made with [font=Courier New]$base[/font] copies its traffic sound set from the record it is based on. Basing a car on [font=Courier New]Vehicle.v_utility4_thorton_mackinaw_bmf[/font], or on game 2.31 on [font=Courier New]Vehicle.v_sport2_mizutani_shion_sport[/font], [font=Courier New]_tdr[/font], [font=Courier New]_player[/font] or [font=Courier New]_quest[/font], inherits the mistake unless you set [font=Courier New]traffic_audio_resource[/font] yourself.[/*]
 [*][b]If you ship your own vehicle sound set[/b] (an [font=Courier New]audioVehicleMetadata[/font] entry), set its [font=Courier New]radioReceiverType[/font] to a traffic radio sound ([font=Courier New]radio_car_*_npc[/font], for example [font=Courier New]radio_car_sports_npc[/font]) for the set your car uses in traffic. A [font=Courier New]radio_car_*_player[/font] receiver plays as if it were inside the player's car. [b]This mod does not catch a sound set you ship yourself:[/b] it only knows the game's own.[/*]
 [*][b]Traffic spawners:[/b] any vehicle you spawn in traffic needs the checks above. The base game's Thorton Larimore traffic set ([font=Courier New]v_car_thorton_larimore_traffic[/font]) has the player radio in the game's own data, so anything that uses it in traffic has the problem.[/*]
 [*][b]Quick check:[/b] run your mod with this one and RedLogger. If your vehicle is listed in the [font=Courier New]TrafficRadioFix[/font] log, it had the problem and this mod fixed it. Setting [font=Courier New]traffic_audio_resource[/font] in your own mod fixes it for players who do not use this one.[/*]

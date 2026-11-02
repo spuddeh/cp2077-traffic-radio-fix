@@ -1,5 +1,20 @@
 # Changelog - Traffic Radio Fix
 
+## [1.0.1] - 2026-11-02
+
+### Added
+- Game 2.5's two new player-radio sound sets in the table: `v_car_chevalier_centurion_legatus` and
+  `v_car_yaiba_semimaru` (92 sets, regenerated from the 2.5 audio metadata). Their vanilla records already use
+  traffic sets; the pairs catch car mods built on them.
+
+### Removed
+- The static tweak `r6/tweaks/TrafficRadioFix/TrafficRadioFix.yaml` and the script's log of its records: the
+  script alone fixes every record (measured on 2.5: `swapped 2`, the Mackinaw BMF pair).
+
+### Notes
+- Game 2.5 points the six Shion records at `v_car_mizutani_shion_traffic` itself; only the Mackinaw BMF pair is
+  still wrong in vanilla 2.5.
+
 ## [1.0.0] - 2026-10-04
 
 First Nexus release.

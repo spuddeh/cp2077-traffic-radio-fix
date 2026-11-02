@@ -1,6 +1,6 @@
 # Traffic Radio Fix
 
-A TweakXL and redscript mod for Cyberpunk 2077 2.31 that stops passing traffic cars playing their radio as
+A TweakXL and redscript mod for Cyberpunk 2077 2.5 and 2.31 that stops passing traffic cars playing their radio as
 if it were inside the player's car.
 
 ## The fault
@@ -14,13 +14,14 @@ Eight base game records point `traffic_audio_resource` at a player set: six Mizu
 (`v_car_mizutani_shion`) and two Thorton Mackinaw BMF records (`v_car_thorton_larimore_traffic`, whose own
 receiver is `radio_car_truck_player`). The Shion Sport and TDR spawn in traffic, so a passing one with its
 radio on is heard at full volume as if it were the player's radio, and cuts off dead when its station stops.
+Game 2.5 points the six Shion records at `v_car_mizutani_shion_traffic` itself, leaving the two Mackinaw BMF
+records.
 
 ## The fix
 
-- `r6/tweaks/TrafficRadioFix/TrafficRadioFix.yaml` sets the eight records to the model's traffic set.
 - `r6/scripts/TrafficRadioFix/TrafficRadioFix.reds` is a TweakXL `ScriptableTweak`. TweakXL runs it after
   every mod's tweaks have loaded; it moves any `Vehicle` record whose `traffic_audio_resource` names one of
-  the 90 sound sets with a player receiver to that model's traffic set. The table is generated from the
+  the 92 sound sets with a player receiver to that model's traffic set. The table is generated from the
   game's `cooked_metadata.audio_metadata`. With RedLogger installed it logs every swap to
   `r6\logs\mods\TrafficRadioFix__*.log`.
 
